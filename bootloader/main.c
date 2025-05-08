@@ -960,7 +960,7 @@ int main(void)
   test_rtc_backup();
 #endif
 
-  checkForSignal();
+ // checkForSignal();
 
   gpio_mode_set_input(input_pin, GPIO_PULL_NONE);
 
