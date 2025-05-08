@@ -748,7 +748,7 @@ static void sendString(const uint8_t *data, int len)
   setReceive();
 }
 
-static void receiveBuffer()
+/*static void receiveBuffer()
 {
   uint16_t count = 0;
   messagereceived = false;
@@ -785,10 +785,10 @@ static void receiveBuffer()
   if (messagereceived) {
     decodeInput();
   }
-}
+} */
 
 #ifdef UPDATE_EEPROM_ENABLE
-static void update_EEPROM()
+/*static void update_EEPROM()
 {
   if (!bl_was_software_reset()) {
     // we only update the bootloader version on a software reset to reduce the chances
@@ -819,7 +819,7 @@ static void update_EEPROM()
       remaining -= chunk;
     }
   }
-}
+} */
 #endif // UPDATE_EEPROM_ENABLE
 
 #define low_pin_count_threshold 450		// count signal pin is low before determining jump to main firmware
