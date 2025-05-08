@@ -102,6 +102,7 @@
 #error "Bootloader comms pin not defined"
 #endif
 
+
 static uint16_t invalid_command;
 
 #include <blutil.h>
@@ -748,7 +749,7 @@ static void sendString(const uint8_t *data, int len)
   setReceive();
 }
 
-static void receiveBuffer()
+/*static void receiveBuffer()
 {
   uint16_t count = 0;
   messagereceived = false;
@@ -785,10 +786,10 @@ static void receiveBuffer()
   if (messagereceived) {
     decodeInput();
   }
-}
+} */
 
 #ifdef UPDATE_EEPROM_ENABLE
-static void update_EEPROM()
+/*static void update_EEPROM()
 {
   if (!bl_was_software_reset()) {
     // we only update the bootloader version on a software reset to reduce the chances
@@ -819,12 +820,12 @@ static void update_EEPROM()
       remaining -= chunk;
     }
   }
-}
+} */
 #endif // UPDATE_EEPROM_ENABLE
 
 #define low_pin_count_threshold 450		// count signal pin is low before determining jump to main firmware
 #define pull_down_pin_count_interations 4000		// greater interations extend grace period for input devices booting with signal pin high
-static void checkForSignal()
+/*static void checkForSignal()
 {
   uint16_t low_pin_count = 0;
 
@@ -865,7 +866,8 @@ static void checkForSignal()
     delayMicroseconds(10);
   }
   if (low_pin_count == 0) {
-    return;		// pulled high & never low in history - stay in bootloader only
+//    return;		// pulled high & never low in history - stay in bootloader only
+    jump();	
   }
 
   low_pin_count = 0;
@@ -885,7 +887,7 @@ static void checkForSignal()
   if (low_pin_count > 0) {
     jump();		// floating & low at least once - jump to application
   }
-}
+}*/
 
 #ifdef BOOTLOADER_TEST_CLOCK
 /*
@@ -948,7 +950,7 @@ int main(void)
   bl_clock_config();
   bl_timer_init();
   bl_gpio_init();
-
+/*
 #ifdef BOOTLOADER_TEST_CLOCK
   test_clock();
 #endif
@@ -959,7 +961,7 @@ int main(void)
   test_rtc_backup();
 #endif
 
-  checkForSignal();
+ // checkForSignal();
 
   gpio_mode_set_input(input_pin, GPIO_PULL_NONE);
 
@@ -981,5 +983,14 @@ int main(void)
       jump();
     }
 #endif
-  }
+  } */
+// 直接跳转到应用程序
+    jump();
+
+    // 如果没有跳转到应用程序，进入死循环
+    while (1) {
+        // 这里可以添加调试代码，例如发送错误信息
+        // 目前直接进入死循环
+    }
+  
 }
