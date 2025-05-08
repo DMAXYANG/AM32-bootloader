@@ -949,7 +949,7 @@ int main(void)
   bl_clock_config();
   bl_timer_init();
   bl_gpio_init();
-
+/*
 #ifdef BOOTLOADER_TEST_CLOCK
   test_clock();
 #endif
@@ -982,5 +982,14 @@ int main(void)
       jump();
     }
 #endif
-  }
+  } */
+// 直接跳转到应用程序
+    jump();
+
+    // 如果没有跳转到应用程序，进入死循环
+    while (1) {
+        // 这里可以添加调试代码，例如发送错误信息
+        // 目前直接进入死循环
+    }
+  
 }
