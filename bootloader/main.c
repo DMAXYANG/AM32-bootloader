@@ -102,6 +102,7 @@
 #error "Bootloader comms pin not defined"
 #endif
 
+
 static uint16_t invalid_command;
 
 #include <blutil.h>
