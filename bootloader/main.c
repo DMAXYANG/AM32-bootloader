@@ -824,7 +824,7 @@ static void update_EEPROM()
 
 #define low_pin_count_threshold 450		// count signal pin is low before determining jump to main firmware
 #define pull_down_pin_count_interations 4000		// greater interations extend grace period for input devices booting with signal pin high
-static void checkForSignal()
+/*static void checkForSignal()
 {
   uint16_t low_pin_count = 0;
 
@@ -886,7 +886,7 @@ static void checkForSignal()
   if (low_pin_count > 0) {
     jump();		// floating & low at least once - jump to application
   }
-}
+}*/
 
 #ifdef BOOTLOADER_TEST_CLOCK
 /*
