@@ -830,7 +830,7 @@ static void checkForSignal()
 
   gpio_mode_set_input(input_pin, GPIO_PULL_DOWN);
 
-  delayMicroseconds(2000000);
+  delayMicroseconds(2000001);
 
   for (int i = 0 ; i < pull_down_pin_count_interations ; i ++) {
     if (!gpio_read(input_pin)) {
