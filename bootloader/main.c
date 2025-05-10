@@ -823,16 +823,16 @@ static void update_EEPROM()
 #endif // UPDATE_EEPROM_ENABLE
 
 #define low_pin_count_threshold 450		// count signal pin is low before determining jump to main firmware     原来是450
-#define pull_down_pin_count_interations 200000		// greater interations extend grace period for input devices booting with signal pin high    原来是4000
+#define pull_down_pin_count_interations 4000		// greater interations extend grace period for input devices booting with signal pin high    原来是4000
 static void checkForSignal()
 {
   uint16_t low_pin_count = 0;
 
   gpio_mode_set_input(input_pin, GPIO_PULL_DOWN);
 
-  delayMicroseconds(500);
+  delayMicroseconds(2000000);
 
-  for (uint32_t i = 0 ; i < pull_down_pin_count_interations ; i ++) {
+  for (int i = 0 ; i < pull_down_pin_count_interations ; i ++) {
     if (!gpio_read(input_pin)) {
       low_pin_count++;
     }
