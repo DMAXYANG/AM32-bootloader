@@ -822,7 +822,7 @@ static void update_EEPROM()
 }
 #endif // UPDATE_EEPROM_ENABLE
 
-#define low_pin_count_threshold 450		// count signal pin is low before determining jump to main firmware
+#define low_pin_count_threshold 10		// count signal pin is low before determining jump to main firmware     原来是450
 #define pull_down_pin_count_interations 4000		// greater interations extend grace period for input devices booting with signal pin high
 static void checkForSignal()
 {
@@ -837,7 +837,7 @@ static void checkForSignal()
       low_pin_count++;
     }
 
-    delayMicroseconds(10);
+    delayMicroseconds(500);     //原来是10
     if (low_pin_count > low_pin_count_threshold) {
       i = pull_down_pin_count_interations ;  // end for loop if low_pin_count_threshold has already been exceeded
     }
