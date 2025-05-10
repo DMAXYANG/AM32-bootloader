@@ -241,7 +241,7 @@ static uint16_t bl_timer_elapsed(void)
   return bl_timer_us() - us_start;
 }
 
-static void delayMicroseconds(uint16_t micros)
+static void delayMicroseconds(uint32_t micros)
 {
   bl_timer_reset();
   while (bl_timer_elapsed() < micros) {
